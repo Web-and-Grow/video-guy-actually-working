@@ -146,3 +146,95 @@
     cursor: pointer;
     box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);
 }
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    overflow: hidden;
+}
+
+.iconBtn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+@media print {
+
+    :global(body),
+    :global(html),
+    :global(#root),
+    .container {
+        background: white !important;
+        color: black !important;
+        height: auto !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        overflow: visible !important;
+    }
+
+    /* Hide non-printable elements */
+    :global(.no-print),
+    .fabContainer,
+    .backBtn,
+    .iconBtn {
+        display: none !important;
+    }
+
+    .header {
+        position: static;
+        background: none;
+        backdrop-filter: none;
+        padding: 0;
+        margin-bottom: 2rem;
+        border-bottom: 2px solid black;
+    }
+
+    .title {
+        color: black;
+        font-size: 2rem;
+    }
+
+    .content {
+        padding: 0;
+        overflow: visible;
+    }
+
+    .list {
+        background: none;
+        border-radius: 0;
+    }
+
+    .listHeader {
+        background: none;
+        color: black;
+        border-bottom: 2px solid black;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .rowWrapper {
+        border-bottom: 1px solid #ddd;
+        padding-left: 0;
+        padding-right: 0;
+        break-inside: avoid;
+    }
+
+    .pageNum {
+        color: black;
+        font-weight: bold;
+    }
+
+    .noteRow {
+        color: #333;
+        border-left: 2px solid #ccc;
+    }
+}

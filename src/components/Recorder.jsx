@@ -62,6 +62,10 @@ export default function Recorder({ project, onBack }) {
                 <button className={styles.navBtn} onClick={onBack}>
                     <ChevronLeft /> Back
                 </button>
+                <div className={styles.takeDisplayHeader}>
+                    <span className={styles.takeLabelHeader}>Take</span>
+                    <span className={styles.takeNumberHeader}>{currentPage}</span>
+                </div>
                 <button className={styles.saveBtn} onClick={confirmSave}>
                     <Save size={20} style={{ marginRight: 4 }} />
                     Save
@@ -69,31 +73,26 @@ export default function Recorder({ project, onBack }) {
             </header>
 
             <div className={styles.mainArea}>
-                <div className={styles.pageDisplay}>
-                    <span className={styles.pageLabel}>Take</span>
-                    <span className={styles.pageNumber}>{currentPage}</span>
-                </div>
-
-                <div className={styles.controlsRow}>
+                <div className={styles.controlsColumn}>
                     <button
                         className={`${styles.bigBtn} ${currentValue === 'plus' ? styles.selected : ''}`}
                         onClick={() => handleSelection('plus')}
                     >
-                        <Plus size={40} />
+                        <Plus size={64} />
                     </button>
 
                     <button
                         className={`${styles.bigBtn} ${currentValue === 'minus' ? styles.selected : ''}`}
                         onClick={() => handleSelection('minus')}
                     >
-                        <Minus size={40} />
+                        <Minus size={64} />
                     </button>
 
                     <button
                         className={`${styles.bigBtn} ${currentValue === 'wave' ? styles.selected : ''}`}
                         onClick={() => handleSelection('wave')}
                     >
-                        <Waves size={40} />
+                        <Waves size={64} />
                     </button>
                 </div>
 

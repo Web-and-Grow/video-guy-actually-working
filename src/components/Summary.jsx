@@ -1,11 +1,15 @@
 import React from 'react';
-import { ArrowLeft, Play, Plus, Minus, Waves } from 'lucide-react';
+import { ArrowLeft, Play, Plus, Minus, Waves, Printer } from 'lucide-react';
 import styles from './Summary.module.css';
 
 export default function Summary({ project, onBack, onResume }) {
     const pages = Object.keys(project.data)
         .map(Number)
         .sort((a, b) => a - b);
+
+    const handlePrint = () => {
+        window.print();
+    };
 
     const renderIcon = (type) => {
         switch (type) {
@@ -18,11 +22,16 @@ export default function Summary({ project, onBack, onResume }) {
 
     return (
         <div className={styles.container}>
-            <header className={styles.header}>
-                <button className={styles.backBtn} onClick={onBack}>
-                    <ArrowLeft size={24} />
+            <header className={`${styles.header} no-print`}>
+                <div className={styles.headerLeft}>
+                    <button className={styles.backBtn} onClick={onBack}>
+                        <ArrowLeft size={24} />
+                    </button>
+                    <h1 className={styles.title}>{project.name}</h1>
+                </div>
+                <button className={styles.iconBtn} onClick={handlePrint} title="Save as PDF">
+                    <Printer size={24} />
                 </button>
-                <h1 className={styles.title}>{project.name}</h1>
             </header>
 
             <div className={styles.content}>
@@ -61,7 +70,7 @@ export default function Summary({ project, onBack, onResume }) {
                 </div>
             </div>
 
-            <div className={styles.fabContainer}>
+            <div className={`${styles.fabContainer} no-print`}>
                 <button className={`${styles.fab} btn-primary`} onClick={onResume}>
                     <Play size={24} fill="currentColor" />
                 </button>

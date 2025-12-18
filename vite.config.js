@@ -1,29 +1,34 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { VitePWA } from 'vite-plugin-pwa'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
-  base: '/Video-app/', // Required for GitHub Pages
+  base: "/Video-guy-app-better/",
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'icon.svg', 'apple-touch-icon.png', 'masked-icon.svg'],
+      registerType: "autoUpdate",
+      includeAssets: [
+        "favicon.ico",
+        "icon.svg",
+        "apple-touch-icon.png",
+        "masked-icon.svg",
+      ],
       manifest: {
-        name: 'Offline Data Tracker',
-        short_name: 'Tracker',
-        description: 'Offline-capable data collection app',
-        theme_color: '#0f172a',
-        background_color: '#0f172a',
-        display: 'standalone',
+        name: "Offline Data Tracker",
+        short_name: "Tracker",
+        description: "Offline-capable data collection app",
+        theme_color: "#0f172a",
+        background_color: "#0f172a",
+        display: "standalone",
         icons: [
           {
-            src: 'icon.svg',
-            sizes: '192x192 512x512',
-            type: 'image/svg+xml'
-          }
-        ]
-      }
-    })
+            src: "icon.svg",
+            sizes: "192x192 512x512",
+            type: "image/svg+xml",
+          },
+        ],
+      },
+    }),
   ],
-})
+});

@@ -55,6 +55,34 @@
     gap: 1.5rem;
 }
 
+.takeDisplayHeader {
+    display: flex;
+    flex-direction: row;
+    /* Horizontal */
+    align-items: center;
+    /* Center Vertically */
+    gap: 0.5rem;
+    line-height: 1;
+}
+
+.takeLabelHeader {
+    font-size: 1rem;
+    /* Slightly larger for inline */
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-weight: 700;
+}
+
+.takeNumberHeader {
+    font-size: 2.5rem;
+    /* Much bigger */
+    font-weight: 900;
+    color: #fff;
+    /* Pure white */
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    /* Pop out */
+}
+
 .pageDisplay {
     display: flex;
     flex-direction: column;
@@ -81,16 +109,23 @@
     background-clip: text;
 }
 
-.controlsRow {
+.controlsColumn {
     display: flex;
-    justify-content: space-between;
-    gap: 0.5rem;
+    flex-direction: column;
+    /* Vertical stack */
+    gap: 1rem;
+    flex: 10;
+    /* Occupy massive amount of space */
+    width: 100%;
 }
 
 .bigBtn {
     flex: 1;
-    height: 80px;
-    border-radius: 16px;
+    /* Split specific height evenly */
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: var(--surface-color);
     color: var(--text-secondary);
@@ -102,14 +137,16 @@
 }
 
 .bigBtn:active {
-    transform: scale(0.95);
+    transform: scale(0.98);
 }
 
 .noteContainer {
     flex: 1;
+    /* Keep note area small at bottom */
     display: flex;
     flex-direction: column;
-    min-height: 0;
+    min-height: 80px;
+    width: 100%;
 }
 
 .noteInput {
