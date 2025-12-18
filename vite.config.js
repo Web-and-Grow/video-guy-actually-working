@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+  base: '/Video-app/', // Required for GitHub Pages
   plugins: [
     react(),
     VitePWA({
