@@ -20,7 +20,11 @@
 .header h1 {
     font-size: 2rem;
     margin: 0;
-    background: linear-gradient(to right, var(--primary-color), var(--accent-wave));
+    font-family: var(--font-head);
+    font-weight: 800;
+    /* ExtraBold */
+    text-transform: uppercase;
+    background: linear-gradient(to right, var(--color-orange-punch), var(--color-petrol-dark));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -56,11 +60,15 @@
     align-items: center;
     gap: 1rem;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background: white;
+    /* Ensure cards are white on cream bg */
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .card:active {
-    background: rgba(255, 255, 255, 0.05);
+    transform: scale(0.98);
+    background: rgba(255, 255, 255, 0.9);
 }
 
 .cardContent {
@@ -129,4 +137,213 @@
     display: flex;
     gap: 1rem;
     justify-content: flex-end;
+}
+
+/* Breadcrumbs / Header Path */
+.pathNav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.pathBtn {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0;
+}
+
+/* Card Types */
+.card.folder {
+    border-left: 4px solid var(--accent-wave);
+    background: rgba(168, 85, 247, 0.1);
+}
+
+.cardIcon.folder {
+    color: var(--accent-wave);
+}
+
+/* Creation Options */
+.createOptions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.createOptionBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    cursor: pointer;
+    color: var(--text-primary);
+}
+
+.createOptionBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Move Modal List */
+.moveList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.moveItem {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-primary);
+}
+
+.moveItem:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.moveItem.current {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Context Menu specific btn */
+.contextMenuBtn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    margin-right: 0.25rem;
+    z-index: 5;
+}
+
+.contextMenuBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.contextMenuBtn:active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Context Menu */
+.contextMenuOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+}
+
+.contextMenu {
+    position: absolute;
+    background: var(--surface-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    z-index: 101;
+}
+
+.contextMenuItem {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contextMenuItem:active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.contextMenuItem.delete {
+    color: var(--danger-color);
+}
+
+/* Selection Mode */
+.card.selectionMode {
+    padding-left: 3rem;
+    /* Space for checkbox */
+    position: relative;
+}
+
+.checkbox {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkbox.checked {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: black;
+}
+
+/* Batch Action Bar */
+.batchBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--surface-color);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 50;
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.textBtn {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.textBtn:disabled {
+    opacity: 0.5;
+}
+
+.textBtn.danger {
+    color: var(--danger-color);
 }

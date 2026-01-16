@@ -5,6 +5,151 @@
     background-color: var(--bg-color);
 }
 
+/* Timer & Header */
+.timerDisplay {
+    font-family: var(--font-head);
+    /* Use Montserrat for numbers? Or Monospace? Let's use Tabular Nums which Montserrat might handle or fallback */
+    font-variant-numeric: tabular-nums;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-orange-punch);
+    /* Primary Orange */
+    letter-spacing: 1px;
+}
+
+.headerActions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nextBtn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* Bottom Controls */
+.bottomBar {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface-color);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: relative;
+    min-height: 120px;
+    /* Ensure space for stacked center */
+}
+
+.centerControls {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.sectionDisplay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.sectionLabel {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.nextSectionBtn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    cursor: pointer;
+}
+
+.pauseContainer {
+    /* Reset absolute positioning since it's now flex item */
+    position: relative;
+    transform: none;
+    left: auto;
+    top: auto;
+}
+
+.pauseBtn {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    border: 4px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+    transition: transform 0.1s;
+}
+
+.pauseBtn:active {
+    transform: scale(0.95);
+}
+
+.pauseBtn.paused {
+    background: var(--danger-color);
+    /* Red for paused/stop feel or Amber? User said "resume" so maybe Amber? Let's use Warning/Amber or Red. */
+    background: #f59e0b;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+}
+
+.navBtn {
+    /* Previous/Next arrows */
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.navBtn:disabled {
+    opacity: 0.3;
+}
+
+/* Delete Button (Contextual) */
+.deleteEntryBtn {
+    align-self: flex-end;
+    background: none;
+    border: 1px solid var(--danger-color);
+    color: var(--danger-color);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    margin-right: 1rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Overrides from previous file structure */
 .topBar {
     display: flex;
     justify-content: space-between;
@@ -16,6 +161,34 @@
     top: 0;
     z-index: 10;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 2rem;
+}
+
+.modal {
+    width: 100%;
+    max-width: 320px;
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.modalActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
 }
 
 .pageIndicator {
@@ -38,7 +211,7 @@
 
 .navBtn {
     background: transparent;
-    color: var(--text-secondary);
+    color: var(--color-charcoal-deep);
     border: none;
     font-size: 1rem;
     display: flex;
@@ -126,14 +299,17 @@
     height: auto;
     min-height: 0;
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: var(--surface-color);
-    color: var(--text-secondary);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    /* Light border */
+    background: white;
+    /* White cards */
+    color: var(--color-charcoal-deep);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
 }
 
 .bigBtn:active {

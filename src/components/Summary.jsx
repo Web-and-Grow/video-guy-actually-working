@@ -2,10 +2,26 @@ import React from 'react';
 import { ArrowLeft, Play, Plus, Minus, Waves, Printer } from 'lucide-react';
 import styles from './Summary.module.css';
 
+const formatTime = (ms) => {
+    if (ms === null || ms === undefined) return "--:--";
+    const totalSeconds = Math.floor(ms / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    const millis = Math.floor((ms % 1000) / 10);
+    const pad = (n) => n.toString().padStart(2, '0');
+    return `${pad(minutes)}:${pad(seconds)}.${pad(millis)}`;
+};
+
 export default function Summary({ project, onBack, onResume }) {
-    const pages = Object.keys(project.data)
-        .map(Number)
-        .sort((a, b) => a - b);
+    // Group entries by section
+    const sections = (project.entries || []).reduce((acc, entry) => {
+        const sec = entry.section || 1;
+        if (!acc[sec]) acc[sec] = [];
+        acc[sec].push(entry);
+        return acc;
+    }, {});
+
+    const sectionKeys = Object.keys(sections).map(Number).sort((a, b) => a - b);
 
     const handlePrint = () => {
         window.print();
@@ -37,35 +53,32 @@ export default function Summary({ project, onBack, onResume }) {
             <div className={styles.content}>
                 <div className={styles.list}>
                     <div className={styles.listHeader}>
-                        <span>Take</span>
+                        <span>Time</span>
                         <span>Value</span>
                     </div>
 
-                    {pages.length === 0 ? (
+                    {(project.entries || []).length === 0 ? (
                         <div className={styles.empty}>No data recorded yet.</div>
                     ) : (
-                        pages.map(page => {
-                            const entry = project.data[page];
-                            // Parse entry for backward compatibility
-                            const value = typeof entry === 'string' ? entry : entry.value;
-                            const note = typeof entry === 'string' ? '' : entry.note;
-
-                            return (
-                                <div key={page} className={styles.rowWrapper}>
-                                    <div className={styles.row}>
-                                        <div className={styles.pageInfo}>
-                                            <span className={styles.pageNum}>#{page}</span>
-                                            {note && <span className={styles.noteIndicator}>*</span>}
-                                        </div>
-                                        <span className={styles.value}>
-                                            {renderIcon(value)}
-                                            <span className={styles.valueText}>{value}</span>
-                                        </span>
-                                    </div>
-                                    {note && <div className={styles.noteRow}>{note}</div>}
+                        sectionKeys.map(secNum => (
+                            <React.Fragment key={secNum}>
+                                <div className={styles.sectionHeader}>
+                                    Section {secNum}
                                 </div>
-                            );
-                        })
+                                {sections[secNum].map((entry, idx) => (
+                                    <div key={entry.id || idx} className={styles.rowWrapper}>
+                                        <div className={styles.row}>
+                                            <span className={styles.timestamp}>{formatTime(entry.timestamp)}</span>
+                                            <span className={styles.value}>
+                                                {renderIcon(entry.value)}
+                                                <span className={styles.valueText}>{entry.value}</span>
+                                            </span>
+                                        </div>
+                                        {entry.note && <div className={styles.noteRow}>{entry.note}</div>}
+                                    </div>
+                                ))}
+                            </React.Fragment>
+                        ))
                     )}
                 </div>
             </div>

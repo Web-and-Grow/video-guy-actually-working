@@ -1,18 +1,52 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Inter:wght@400;500;600&display=swap');
+
 :root {
-  --bg-color: #0f172a;
-  --surface-color: #1e293b;
-  --primary-color: #38bdf8;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
+  /* Web and Grow Design System */
+
+  /* Primärfarben */
+  --color-orange-punch: #DD562A;
+  --color-charcoal-deep: #1E1E1E;
+
+  /* Ergänzende Palette */
+  --color-cream-white: #F9F4EF;
+  --color-petrol-dark: #0A3D45;
+
+  /* Mappings to App Theme */
+  --bg-color: var(--color-camel-white);
+  /* Will fallback or use cream */
+  --bg-color: var(--color-cream-white);
+  --surface-color: #ffffff;
+  /* Use white or cream for cards? Let's use White for contrast on Cream, or Charcoal for Dark Mode? User didn't specify Dark Mode, styleguide implies light/bold. Let's start with Light Theme as per "Cream White Background" */
+
+  /* Let's try a Dark/Bold theme or Light/Clean?
+     "Cream White -> Hintergrundfarbe für ruhige Flächen" implies Light Mode.
+     "Deep Charcoal -> Texts" implications Light Mode.
+     Let's Go Light Mode. */
+
+  --bg-color: var(--color-cream-white);
+  --surface-color: #ffffff;
+  /* Clean cards */
+  --primary-color: var(--color-orange-punch);
+  --text-primary: var(--color-charcoal-deep);
+  --text-secondary: #555555;
+  /* Neutral grey for secondary */
+
+  --accent-color: var(--color-petrol-dark);
   --danger-color: #ef4444;
   --success-color: #22c55e;
-  --accent-wave: #a855f7;
+  --accent-wave: var(--color-petrol-dark);
 
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Typography */
+  --font-head: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  font-family: var(--font-body);
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: dark;
+  color-scheme: light;
+  /* Switched to light */
   color: var(--text-primary);
   background-color: var(--bg-color);
 
@@ -64,6 +98,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: var(--font-body);
 }
 
 .btn:active {
@@ -72,7 +107,15 @@ body {
 
 .btn-primary {
   background-color: var(--primary-color);
-  color: #000;
+  color: white;
+  /* Orange takes White text better for contrast? Or Black? Orange #DD562A is medium. White is safer. */
+  color: #fff;
+  font-family: var(--font-head);
+  /* Headlines/Buttons Bold */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 10px rgba(221, 86, 42, 0.3);
 }
 
 .btn-icon {
@@ -82,11 +125,13 @@ body {
 }
 
 .glass-panel {
-  background: rgba(30, 41, 59, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  /* Gentle shadow */
 }
 
 /* Reusable layout helpers */
